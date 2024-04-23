@@ -2,9 +2,10 @@ import "./App.css"
 import { useState } from "react"
 
 function App() {
-  const [firstNumber, setFirstNumber] = useState(0)
-  const [secondNumber, setSecondNumber] = useState(0)
-  const [operation, setOperation] = useState('+')
+  const [firstNumber, setFirstNumber] = useState('0')
+  const [secondNumber, setSecondNumber] = useState('0')
+  const [operator, setOperator] = useState('+')
+  const [total, setTotal] = useState('0')
 
   function handleClickFirstNumber(e) {
     setFirstNumber(e.target.innerText)
@@ -14,8 +15,8 @@ function App() {
     setSecondNumber(e.target.innerText)
   }
 
-  function handleClickOperation(e) {
-    setOperation(e.target.innerText)
+  function handleClickOperator(e) {
+    setOperator(e.target.innerText)
   }
 
   function handleClearFirstNumber(e) {
@@ -26,6 +27,10 @@ function App() {
   function handleClearSecondNumber(e) {
     e.stopPropagation()
     setSecondNumber(0)
+  }
+
+  function handleCalculate() {
+    setTotal(eval(firstNumber + operator + secondNumber))
   }
   
   return (
@@ -48,8 +53,8 @@ function App() {
       </div>
 
       <div className="panel">
-        <p>{operation}</p>
-        <div className="numbers" onClick={handleClickOperation}>
+        <p>{operator}</p>
+        <div className="numbers" onClick={handleClickOperator}>
           <button>+</button>
           <button>-</button>
           <button>*</button>
@@ -74,9 +79,9 @@ function App() {
         </div>
       </div>
       <div className="panel answer">
-        <p>0</p>
+        <p>{total}</p>
         <div>
-          <button>=</button>
+          <button onClick={handleCalculate}>=</button>
         </div>
       </div>
     </div>
