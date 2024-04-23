@@ -4,6 +4,7 @@ import { useState } from "react"
 function App() {
   const [firstNumber, setFirstNumber] = useState(0)
   const [secondNumber, setSecondNumber] = useState(0)
+  const [operation, setOperation] = useState('+')
 
   function handleClickFirstNumber(e) {
     setFirstNumber(e.target.innerText)
@@ -11,6 +12,10 @@ function App() {
 
   function handleClickSecondNumber(e) {
     setSecondNumber(e.target.innerText)
+  }
+
+  function handleClickOperation(e) {
+    setOperation(e.target.innerText)
   }
 
   function handleClearFirstNumber(e) {
@@ -43,8 +48,8 @@ function App() {
       </div>
 
       <div className="panel">
-        <p>+</p>
-        <div className="numbers">
+        <p>{operation}</p>
+        <div className="numbers" onClick={handleClickOperation}>
           <button>+</button>
           <button>-</button>
           <button>*</button>
